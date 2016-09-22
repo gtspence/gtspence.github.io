@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load staticfiles %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -23,76 +22,47 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     
-	{% if title %}
-    <title>{{ title }} - Fantasy Swimming</title>
-    {% else %}
     <title>Fantasy Swimming</title>
-    {% endif %}
     
   </head>
   <body>
   <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-        	{% if user.is_authenticated %}
-			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			  </button>
-			{% endif %}
-          <a class="navbar-brand" href="{% url 'index' %}">Fantasy Swimming</a>
+          <a class="navbar-brand" href="#">Fantasy Swimming</a>
         </div>
-        {% if user.is_authenticated %}
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">        
-            <li class="hidden-sm"><a href="{% url 'events' %}">Events</a></li>
-           	<li><a href="{% url 'schedule' %}">Schedule</a></li>
-           	<li><a href="{% url 'leagues' %}">Leagues</a></li>
-			<li><a href="{% url 'rules' %}">Rules</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-			<li><a href="{% url 'user' user.id %}"><strong>{{ user }}</strong></a></li>
-			{% if user.team.name %}
-				<li><a href="{{ user.team.get_absolute_url }}">My Team</a></li>
-			{% else %}
-				<li><a href="{% url 'team_new' %}">Create Team</a></li>
-			{% endif %}
-        	<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'password_change' %}">Change Password</a></li>
-                <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="{% url 'logout' %}?next=/rio/">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-        {% endif %}
       </div>
     </nav>
   
   	<div class="container">
   	
-	  	{% if messages %}
-			{% for message in messages %}
-				{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-					<div class="alert alert-danger" role="alert">
-					<li>{{ message }}</li>
-				{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-					<div class="alert alert-warning" role="alert">
-					<li>{{ message }}</li>
-				{% else %}
-					<div class="alert alert-success" role="alert">
-					<li>{{ message }}</li>
-				{% endif %}
-				</div>
-    		{% endfor %}
-		{% endif %}
-  	
-		{% block content %}{% endblock %}
+		<div class="jumbotron">
+			<h2>Welcome to Fantasy Swimming!</h2>
+			<p>
+				Thanks to all of the 401 teams that took part in the Rio competition.
+			</p>
+			<p>
+				Come back in 2017 for Fantasy Swimming Budapest (World Championships).
+			</p>
+		</div>
+
+		<blockquote>
+			<p class="lead">
+				Make <b>gold medal predictions</b> for each event...
+			</p>
+			<p class="lead">
+				And <b>score points</b> depending on how your choices do!
+			</p>
+		</blockquote>
+		<blockquote>	
+			<p class="lead">
+				Create a <b>league</b> to compete with your friends...
+			</p>
+			<p class="lead">
+				Or just see how you do in the <b>overall standings!</b>
+			</p>
+		</blockquote>
+
     </div>
     <br>
 
